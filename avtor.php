@@ -1,15 +1,17 @@
 <?php
+session_start();
 header('Content-Type: text/html; charset=utf-8');
+
+$host = "localhost";
+$db = "ixiwdmmw_030";
+$user = "ixiwdmmw_030";
+$password = "123456qq";
 
 $email = $_POST["email"];
 $pass = $_POST["pass"];
 
-echo "<hr><br>
-      email: $email<br>
-      пароль:$pass<hr>";
-
-session_start();
 $mysqli = mysqli_connect($host, $user, $password, $db);
+
 
 if ($mysqli == false) {
       print("Ошибка: Невозможно подключиться к MySQL "  . mysqli_connect_error());
@@ -27,24 +29,24 @@ if ($mysqli == false) {
       }
 }
 
-$email = trim(mb_strtolower($_POST["email"]));
-$pass = trim($_POST["pass"]);
+// $email = trim(mb_strtolower($_POST["email"]));
+// $pass = trim($_POST["pass"]);
 
-$mysqli = mysqli_connect($host, $user, $password, $db);
+// $mysqli = mysqli_connect($host, $user, $password, $db);
 
-if ($mysqli == false) {
-      print("error");
-} else {
-      $result  = $mysqli->query("SELECT * FROM `users` WHERE `email` = '$email'");
-      $result = $result->fetch_assoc();
+// if ($mysqli == false) {
+//       print("error");
+// } else {
+//       $result  = $mysqli->query("SELECT * FROM `users` WHERE `email` = '$email'");
+//       $result = $result->fetch_assoc();
 
-      if (password_verify($pass, $result["pass"])) {
-            echo "success";
-            $_SESSION["name"] = $result["name"];
-            $_SESSION["lastname"] = $result["lastname"];
-            $_SESSION["email"] = $result["email"];
-            $_SESSION["id"] = $result["id"];
-      } else {
-            echo "not_found";
-      }
-}
+//       if (password_verify($pass, $result["pass"])) {
+//             echo "success";
+//             $_SESSION["name"] = $result["name"];
+//             $_SESSION["lastname"] = $result["lastname"];
+//             $_SESSION["email"] = $result["email"];
+//             $_SESSION["id"] = $result["id"];
+//       } else {
+//             echo "not_found";
+//       }
+// }
